@@ -7,23 +7,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: Inter, sans-serif; background: linear-gradient(180deg,#f8f9fa 0%,#e9ecef 100%); color:#0a0a0a; }
-    h1,h2 { font-family:'Playfair Display', serif; letter-spacing:-.02em; color:#000; }
-    h3 { color:#000; }
+    body { font-family: Inter, sans-serif; background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%); color: #0a0a0a; }
+    h1, h2 { font-family: 'Playfair Display', serif; letter-spacing: -0.02em; color: #000; }
+    h3 { color: #000; }
+    .nav a[aria-current="page"] { font-weight: 700; text-decoration: underline; text-underline-offset: 6px; }
   </style>
 </head>
-<body class="text-black bg-gray-100">
+<body class="text-black bg-gray-100 transition-colors duration-500">
   <header class="p-6 border-b border-gray-500/80 bg-white/80 backdrop-blur-sm sticky top-0 z-10 shadow-md">
-    <nav class="max-w-5xl mx-auto flex justify-center gap-10 text-lg font-medium">
-      <a href="index.html" class="text-black hover:text-gray-600">Home</a>
-      <a href="history.html" class="text-black hover:text-gray-600">History</a>
+    <nav class="nav max-w-5xl mx-auto flex justify-center gap-10 text-lg font-medium">
+      <a href="index.html" class="text-black hover:text-gray-600 transition">Home</a>
+      <a href="about.html" class="text-black hover:text-gray-600 transition">About us</a>
+      <a href="history.html" class="text-black hover:text-gray-600 transition">History</a>
     </nav>
   </header>
 
   <main class="max-w-6xl mx-auto px-6 py-16 text-center">
     <h1 class="text-4xl font-bold mb-12">Our Team</h1>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
-      <!-- Swap each placeholder with: <img src="images/sondre.jpg" alt="Sondre Storesæter" class="w-32 h-32 rounded-full object-cover mb-4"> -->
+      <!-- Replace the placeholder with: <img src="images/sondre.jpg" alt="Sondre Storesæter" class="w-32 h-32 rounded-full object-cover mb-4"> -->
       <div class="flex flex-col items-center">
         <div class="w-32 h-32 rounded-full bg-gray-400 mb-4 flex items-center justify-center text-gray-700">Photo</div>
         <h3 class="text-2xl font-extrabold">Sondre Storesæter</h3>
@@ -55,6 +57,17 @@
   <footer class="py-8 text-center text-sm border-t border-gray-500/80 bg-white/80 backdrop-blur-sm mt-10">
     <p>© <span id="year"></span> Knigg Invest. All rights reserved.</p>
   </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Active nav highlighting based on current page
+    const path = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav a').forEach(a => {
+      const target = a.getAttribute('href');
+      if ((path === '' && target.endsWith('index.html')) || path === target) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  </script>
 </body>
 </html>

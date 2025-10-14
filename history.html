@@ -7,16 +7,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: Inter, sans-serif; background: linear-gradient(180deg,#f8f9fa 0%,#e9ecef 100%); color:#1e1e1e; }
-    h1,h2 { font-family:'Playfair Display', serif; letter-spacing:-.02em; color:#111; }
-    p, li { color:#222; }
+    body { font-family: Inter, sans-serif; background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%); color: #1e1e1e; }
+    h1, h2 { font-family: 'Playfair Display', serif; letter-spacing: -0.02em; color: #111; }
+    p, li { color: #222; }
+    .nav a[aria-current="page"] { font-weight: 700; text-decoration: underline; text-underline-offset: 6px; }
   </style>
 </head>
-<body class="text-gray-900 bg-gray-100">
+<body class="text-gray-900 bg-gray-100 transition-colors duration-500">
   <header class="p-6 border-b border-gray-400/60 bg-white/70 backdrop-blur-sm sticky top-0 z-10 shadow-sm">
-    <nav class="max-w-5xl mx-auto flex justify-center gap-10 text-lg font-medium">
-      <a href="index.html" class="text-gray-700 hover:text-gray-500">Home</a>
-      <span class="text-gray-700">History</span>
+    <nav class="nav max-w-5xl mx-auto flex justify-center gap-10 text-lg font-medium">
+      <a href="index.html" class="text-black hover:text-gray-600 transition">Home</a>
+      <a href="about.html" class="text-black hover:text-gray-600 transition">About us</a>
+      <a href="history.html" class="text-black hover:text-gray-600 transition">History</a>
     </nav>
   </header>
 
@@ -62,6 +64,16 @@
   <footer class="py-10 text-center text-sm border-t border-gray-400/60 bg-white/70 backdrop-blur-sm">
     <p>© <span id="year"></span> Knigg Invest. All rights reserved.</p>
   </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const path = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav a').forEach(a => {
+      const target = a.getAttribute('href');
+      if ((path === '' && target.endsWith('index.html')) || path === target) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  </script>
 </body>
 </html>
