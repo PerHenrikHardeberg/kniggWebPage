@@ -4,12 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Knigg Invest</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Font loading (fix) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: Inter, sans-serif; background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%); color: #0a0a0a; }
-    h1 { font-family: 'Playfair Display', serif; letter-spacing: -0.02em; color: #000; }
-    .nav a[aria-current="page"] { font-weight: 700; text-decoration: underline; text-underline-offset: 6px; }
+    body {
+      font-family: Inter, sans-serif;
+      background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+      color: #0a0a0a;
+    }
+    /* Make header/nav use Inter as well */
+    header, nav, .nav a { font-family: Inter, sans-serif; }
+
+    /* Keep the big title in Playfair */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: -0.02em;
+      color: #000;
+    }
+    .nav a[aria-current="page"] {
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+    }
   </style>
 </head>
 <body class="text-black bg-gray-100 transition-colors duration-500">
@@ -32,7 +53,8 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    // Active nav highlighting based on current page
+
+    // Active nav highlight
     const path = location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav a').forEach(a => {
       const target = a.getAttribute('href');
